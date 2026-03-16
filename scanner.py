@@ -101,16 +101,19 @@ def export_csv():
         counter += 1
 
     try:
-        with open(filename, "w", newline="") as csvfile:
-            writer = csv.writer(csvfile)
-            header = ["User"] + list(qr_to_action.values()) + ["Total"]
-            writer.writerow(header)
-            for user, actions in user_actions.items():
-                counts = [actions[a] for a in qr_to_action.values()]
-                total = sum(counts)
-                row = [user] + counts + [total]
-                writer.writerow(row)
-        print(f"Data exported to {filename}")
+        if user_actions:
+            with open(filename, "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                header = ["User"] + list(qr_to_action.values()) + ["Total"]
+                writer.writerow(header)
+                for user, actions in user_actions.items():
+                    counts = [actions[a] for a in qr_to_action.values()]
+                    total = sum(counts)
+                    row = [user] + counts + [total]
+                    writer.writerow(row)
+            print(f"Data exported to {filename}")
+        else:
+            print("No data to export.")
     except Exception as e:
         print(f"Error exporting CSV: {e}")
 
@@ -149,7 +152,6 @@ tree.pack(fill="both", expand=True)
 style = ttk.Style()
 style.configure("Treeview", font=table_font)
 style.configure("Treeview.Heading", font=table_header_font)
-
 
 # Export button (optional manual export)
 export_button = tk.Button(root, text="Export CSV", command=export_csv)
