@@ -11,15 +11,19 @@ A simple Python/Tkinter application to scan users and items.
 
 ## Installation & Setup
 
-1. **Clone the repository**
-
-Open Terminal and run:
+To clone the repository, open the terminal and run:
 
 ```bash
 git clone https://github.com/phillipgild/beer_computer.git
 cd beer_computer
 python -m pip install -r requirements.txt
 ```
+
+## Mac-OS Setup
+
+## Windows Setup
+
+## Linux Setup
 
 ## Create scripts to run the programs
 
