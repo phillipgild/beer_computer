@@ -20,7 +20,7 @@ def generate_mac_command_files():
 
     command_path = os.path.join(repo_dir, command_filename)
 
-    with open(command_path, "w") as f:
+    with open(command_path, "w", encoding="utf-8") as f:
         f.write(command_content)
 
     os.chmod(command_path, 0o755)
@@ -36,7 +36,7 @@ def generate_mac_command_files():
 
     command_path = os.path.join(repo_dir, command_filename)
 
-    with open(command_path, "w") as f:
+    with open(command_path, "w", encoding="utf-8") as f:
         f.write(command_content)
     
     os.chmod(command_path, 0o755)
@@ -52,7 +52,7 @@ def generate_mac_command_files():
 
     command_path = os.path.join(repo_dir, command_filename)
 
-    with open(command_path, "w") as f:
+    with open(command_path, "w", encoding="utf-8") as f:
         f.write(command_content)
 
     os.chmod(command_path, 0o755)
@@ -68,7 +68,7 @@ def generate_mac_command_files():
 
     command_path = os.path.join(repo_dir, command_filename)
 
-    with open(command_path, "w") as f:
+    with open(command_path, "w", encoding="utf-8") as f:
         f.write(command_content)
 
     os.chmod(command_path, 0o755)

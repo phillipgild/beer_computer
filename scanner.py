@@ -9,7 +9,7 @@ output_dir = "exports"
 
 # --- Load Users from CSV ---
 qr_to_user = {}
-with open("users.csv", newline="") as f:
+with open("users.csv", newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -20,7 +20,7 @@ with open("users.csv", newline="") as f:
 
 # --- Load Items from CSV ---
 qr_to_item = {}
-with open("items.csv", newline="") as f:
+with open("items.csv", newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -31,7 +31,7 @@ with open("items.csv", newline="") as f:
 
 # --- Load Hardcoded Actions from CSV ---
 hardcoded_actions = {}
-with open("no_touch/hardcoded_actions.csv", newline="") as f:
+with open("no_touch/hardcoded_actions.csv", newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -46,7 +46,7 @@ if os.path.exists(output_dir):
     for filename in os.listdir(output_dir):
         if filename.startswith("user_actions") and filename.endswith(".csv"):
             # Read conent of csv file and built a dict of user actions
-            with open(os.path.join(output_dir, filename), newline="") as csvfile:
+            with open(os.path.join(output_dir, filename), newline="", encoding="utf-8") as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     user = row["User"]
@@ -138,7 +138,7 @@ def export_csv():
             if user_actions == previous_user_actions: # Compare current user_actions with previous_user_actions
                 print("No changes since last export. Skipping export.")
             else:
-                with open(filename, "w", newline="") as csvfile:
+                with open(filename, "w", newline="", encoding="utf-8") as csvfile:
                     writer = csv.writer(csvfile)
                     header = ["User"] + list(qr_to_item.values()) + ["Total"]
                     writer.writerow(header)
@@ -154,7 +154,7 @@ def export_csv():
                 print(f"Exported new entries since last export to {filename}")
                 previous_user_actions = copy.deepcopy(user_actions)  # update the previous state after export
         elif user_actions: # If we have user actions but no previous state, export all data
-            with open(filename, "w", newline="") as csvfile:
+            with open(filename, "w", newline="", encoding="utf-8") as csvfile:
                 writer = csv.writer(csvfile)
                 header = ["User"] + list(qr_to_item.values()) + ["Total"]
                 writer.writerow(header)
