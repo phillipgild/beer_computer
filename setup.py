@@ -9,7 +9,7 @@ def generate_mac_command_files():
 
     # Generate the run_scanner.command file
     os.makedirs(mac_os_dir, exist_ok=True)
-    command_filename = os.path.join(mac_os_dir, "run_scanner.command")
+    command_filename = os.path.join(mac_os_dir, "scanner.command")
     repo_dir = os.path.abspath(os.path.dirname(__file__))
 
     command_content = f"""
@@ -26,7 +26,7 @@ def generate_mac_command_files():
     os.chmod(command_path, 0o755)
 
     # Generate the run_find_prices.command file
-    command_filename = os.path.join(mac_os_dir, "run_find_prices.command")
+    command_filename = os.path.join(mac_os_dir, "find_prices.command")
     command_content = f"""
     #!/bin/bash
     cd "{repo_dir}"
