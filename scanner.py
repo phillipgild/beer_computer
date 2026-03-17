@@ -165,8 +165,8 @@ root.geometry("1536x864")
 
 # Define fonts
 status_font = font.Font(family="Helvetica", size=20, weight="bold")
-table_header_font = font.Font(family="Helvetica", size=14, weight="bold")
-table_font = font.Font(family="Helvetica", size=14)
+table_header_font = font.Font(family="Helvetica", size=18, weight="bold")
+table_font = font.Font(family="Helvetica", size=16)
 
 # Hidden entry for USB scanner
 scan_entry = tk.Entry(root, font=status_font)
@@ -183,7 +183,9 @@ columns = ["User"] + list(qr_to_item.values()) + ["Total"]
 tree = ttk.Treeview(root, columns=columns, show="headings")
 for col in columns:
     tree.heading(col, text=col, anchor="center")
-    tree.column(col, anchor="center")
+    col_width = table_header_font.measure(col)
+    tree.column(col, anchor="center", width=col_width)
+
 tree.pack(fill="both", expand=True)
 style = ttk.Style()
 style.configure("Treeview", font=table_font)
