@@ -16,10 +16,15 @@ To clone the repository, open the terminal and run:
 ```bash
 git clone https://github.com/phillipgild/beer_computer.git
 cd beer_computer
-python -m pip install -r requirements.txt
 ```
 
 ## Mac-OS Setup
+
+To install the required packages for Mac OS, run the following command in the repository folder
+
+```bash
+python -m pip install -r macos_requirements.txt
+```
 
 ## Windows Setup
 
