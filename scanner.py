@@ -40,9 +40,24 @@ with open("no_touch/hardcoded_actions.csv", newline="") as f:
             raise ValueError(f"Duplicate action or key: {action} / {key}")
         hardcoded_actions[key] = action
 
+# --- Read existing user actions from CSV if it exists ---
+previous_user_actions = {}
+if os.path.exists(output_dir):
+    for filename in os.listdir(output_dir):
+        if filename.startswith("user_actions") and filename.endswith(".csv"):
+            # Read conent of csv file and built a dict of user actions
+            with open(os.path.join(output_dir, filename), newline="") as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    user = row["User"]
+                    if user not in previous_user_actions:
+                        previous_user_actions[user] = {a: 0 for a in qr_to_item.values()}
+                    for action in qr_to_item.values():
+                        count = int(row.get(action, 0))
+                        previous_user_actions[user][action] += count
+
 # Nested dictionary to track actions per user
-user_actions = {}
-previous_user_actions = {}  # to store the last exported state for comparison
+user_actions = copy.deepcopy(previous_user_actions) if previous_user_actions else {}
 
 # Track current user waiting for action
 current_user = None
@@ -197,5 +212,8 @@ export_button.pack(pady=5)
 
 # Bind the window close event
 root.protocol("WM_DELETE_WINDOW", on_close)
+
+if user_actions:
+    refresh_table()  # Refresh the table with any existing data
 
 root.mainloop()
