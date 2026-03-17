@@ -9,7 +9,7 @@ output_dir = "prices"
 qr_to_item = {}
 item_prices = {}
 item_amounts = {}
-with open("items.csv", newline="") as f:
+with open("items.csv", newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -28,7 +28,7 @@ def load_all_user_actions():
     try:
         for filename in os.listdir("exports"):
             if filename.endswith(".csv"):
-                with open(os.path.join("exports", filename), newline="") as csvfile:
+                with open(os.path.join("exports", filename), newline="", encoding="utf-8") as csvfile:
                     reader = csv.DictReader(csvfile)
                     for row in reader:
                         user = row["User"]
@@ -89,7 +89,7 @@ def export_user_costs(user_costs, filename="user_costs.csv"):
     global output_dir
     os.makedirs(output_dir, exist_ok=True)
     try:
-        with open(os.path.join(output_dir, filename), "w", newline="") as csvfile:
+        with open(os.path.join(output_dir, filename), "w", newline="", encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(["User", "Total Cost"])
             for user, cost in user_costs.items():
