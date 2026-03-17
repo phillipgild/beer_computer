@@ -96,7 +96,6 @@ def generate_qr(code, label):
     # --- Save PNG ---
     filename = os.path.join(output_dir, f"{label}_{code}.png")
     img.save(filename)
-    print(f"Saved QR code for {label} -> {filename}")
 
 # Generate QR codes for users
 for qr_key, name in users.items():
@@ -109,16 +108,5 @@ for qr_key, name in items.items():
 # Generate QR codes for hardcoded actions
 for qr_key, name in hardcoded_actions.items():
     generate_qr(qr_key, name)
-
-# Optional: mapping CSV (just for reference)
-with open(os.path.join(output_dir, "qr_mapping.csv"), "w", newline="", encoding="utf-8") as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(["QR_Code", "Type", "Name"])
-    for qr_key, name in users.items():
-        writer.writerow([qr_key, "User", name])
-    for qr_key, name in items.items():
-        writer.writerow([qr_key, "Item", name])
-    for qr_key, name in hardcoded_actions.items():
-        writer.writerow([qr_key, "Action", name])
 
 print(f"All QR codes and mapping CSV saved in '{output_dir}' folder.")
