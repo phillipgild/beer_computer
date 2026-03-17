@@ -98,4 +98,4 @@ def export_user_costs(user_costs, filename="user_costs.csv"):
     except Exception as e:
         print(f"Error exporting user costs: {e}")
 
-export_user_costs(user_costs)
+export_user_costs(final_user_costs)
