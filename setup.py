@@ -84,9 +84,9 @@ def generate_windows_bat_files():
     repo_dir = os.path.abspath(os.path.dirname(__file__))
     
     bat_content = f"""
+    @echo off
     cd "{repo_dir}"
     python3 scanner.py
-    pause
     """
 
     bat_path = os.path.join(repo_dir, bat_filename)
@@ -99,9 +99,9 @@ def generate_windows_bat_files():
     # Generate the run_find_prices.bat file
     bat_filename = os.path.join(windows_dir, "run_find_prices.bat")
     bat_content = f"""
+    @echo off
     cd "{repo_dir}"
     python3 find_prices_divide_losses_equally.py
-    pause
     """
 
     bat_path = os.path.join(repo_dir, bat_filename)
@@ -114,9 +114,9 @@ def generate_windows_bat_files():
     # Generate the generate_qr_codes.bat file
     bat_filename = os.path.join(windows_dir, "generate_qr_codes.bat")
     bat_content = f"""
+    @echo off
     cd "{repo_dir}"
     python3 generate_qr_codes.py
-    pause
     """
 
     bat_path = os.path.join(repo_dir, bat_filename)
@@ -129,6 +129,7 @@ def generate_windows_bat_files():
     # Generate the generate_barcodes.bat file
     bat_filename = os.path.join(windows_dir, "generate_barcodes.bat")
     bat_content = f"""
+    @echo off
     cd "{repo_dir}"
     python3 generate_barcodes.py
     pause

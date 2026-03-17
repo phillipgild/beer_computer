@@ -19,7 +19,7 @@ names_seen = set()
 
 # --- Read Users CSV ---
 users = {}
-with open("users.csv", newline="", encoding="utf-8") as f:
+with open("users.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -33,7 +33,7 @@ with open("users.csv", newline="", encoding="utf-8") as f:
 
 # --- Read Items CSV ---
 items = {}
-with open("items.csv", newline="", encoding="utf-8") as f:
+with open("items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -47,7 +47,7 @@ with open("items.csv", newline="", encoding="utf-8") as f:
 
 # --- Read Hardcoded Actions CSV ---
 hardcoded_actions = {}
-with open("no_touch/hardcoded_actions.csv", newline="", encoding="utf-8") as f:
+with open("no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -111,7 +111,7 @@ for qr_key, name in hardcoded_actions.items():
     generate_qr(qr_key, name)
 
 # Optional: mapping CSV (just for reference)
-with open(os.path.join(output_dir, "qr_mapping.csv"), "w", newline="", encoding="utf-8") as csvfile:
+with open(os.path.join(output_dir, "qr_mapping.csv"), "w", newline="", encoding="utf-8-sig") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["QR_Code", "Type", "Name"])
     for qr_key, name in users.items():
