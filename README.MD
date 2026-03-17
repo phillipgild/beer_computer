@@ -1,10 +1,9 @@
 # Øl Computeren
 
-A simple Python/Tkinter application to scan users and items.
+A simple Python application to scan users and items.
 
 ## Requirements
 
-- macOS
 - Python 3.x installed
 
 ---
@@ -18,9 +17,9 @@ git clone https://github.com/phillipgild/beer_computer.git
 cd beer_computer
 ```
 
-## Mac-OS Setup
+## Setup
 
-To install the required packages for Mac OS, run the following command in the repository folder
+To install the required packages for Mac OS/Linux, run the following command in the repository folder
 
 ```bash
 python -m pip install -r macos_requirements.txt
@@ -28,12 +27,10 @@ python -m pip install -r macos_requirements.txt
 
 ## Windows Setup
 
-## Linux Setup
-
 ## Create scripts to run the programs
 
 1. **Go to the folder 'run_setup'**
-2. **On Mac-OS,  double-click run_setu_mac.command  \
+2. **On Mac-OS,  double-click run_setup_mac.command  \
      On Windows, double-click run_setup_windows.bat  \
      On Linux,   double-click run_setup_linux.sh**
 3. **On Mac-OS,  go to 'mac_scripts'     and run the desired program(s)  \

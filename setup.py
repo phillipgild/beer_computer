@@ -2,6 +2,7 @@
 
 This script generates .command files for Mac users to easily run the scripts in the repository."""
 import os
+import platform
 
 def generate_mac_command_files():
     """Generate .command files for Mac users to easily run the scripts in the repository."""
@@ -142,11 +143,80 @@ def generate_windows_bat_files():
 
     os.chmod(bat_path, 0o755)
 
+def generate_linux_sh_files():
+    """Generate .sh files for Linux users to easily run the scripts in the repository."""
+    linux_dir = 'linux_scripts'
+    
+    # Generate the run_scanner.bat file
+    os.makedirs(linux_dir, exist_ok=True)
+
+    sh_filename = os.path.join(linux_dir, "run_scanner.sh")
+    repo_dir = os.path.abspath(os.path.dirname(__file__))
+    
+    sh_content = f"""
+    cd "{repo_dir}"
+    python3 scanner.py
+    """
+
+    sh_path = os.path.join(repo_dir, sh_filename)
+
+    with open(sh_path, "w") as f:
+        f.write(sh_content)
+        
+    os.chmod(sh_path, 0o755)
+    
+    # Generate the run_find_prices.bat file
+    sh_filename = os.path.join(linux_dir, "run_find_prices.sh")
+    sh_content = f"""
+    cd "{repo_dir}"
+    python3 find_prices_divide_losses_equally.py
+    """
+
+    sh_path = os.path.join(repo_dir, sh_filename)
+
+    with open(sh_path, "w") as f:
+        f.write(sh_content)
+    
+    os.chmod(sh_path, 0o755)
+
+    # Generate the generate_qr_codes.bat file
+    sh_filename = os.path.join(linux_dir, "generate_qr_codes.sh")
+    sh_content = f"""
+    cd "{repo_dir}"
+    python3 generate_qr_codes.py
+    """
+
+    sh_path = os.path.join(repo_dir, sh_filename)
+
+    with open(sh_path, "w") as f:
+        f.write(sh_content)
+
+    os.chmod(sh_path, 0o755)
+
+    # Generate the generate_barcodes.bat file
+    sh_filename = os.path.join(linux_dir, "generate_barcodes.sh")
+    sh_content = f"""
+    cd "{repo_dir}"
+    python3 generate_barcodes.py
+    pause
+    """
+
+    sh_path = os.path.join(repo_dir, sh_filename)
+
+    with open(sh_path, "w") as f:
+        f.write(sh_content)
+
+    os.chmod(sh_path, 0o755)
+
 def main():
-    """Main function."""
-    # Generate the .command files for Mac users
-    generate_mac_command_files()
-    generate_windows_bat_files()
+    """Main function."""    
+    system = platform.system()
+    if system == "MacOS":
+        generate_mac_command_files()
+    elif system == "Windows":
+        generate_windows_bat_files()
+    elif system == 'Linux':
+        generate_linux_sh_files()
 
 if __name__ == "__main__":
     main()

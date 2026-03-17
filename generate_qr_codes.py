@@ -109,4 +109,4 @@ for qr_key, name in items.items():
 for qr_key, name in hardcoded_actions.items():
     generate_qr(qr_key, name)
 
-print(f"All QR codes and mapping CSV saved in '{output_dir}' folder.")
+print(f"All QR codes saved in '{output_dir}' folder.")
