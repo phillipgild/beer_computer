@@ -64,6 +64,7 @@ current_user = None
 
 # --- Functions ---
 def handle_scan(event):
+    """Handle a scan from the USB scanner. Determine if it's a user, an item, or a hardcoded action, and update the state accordingly."""
     global current_user
     global status_font
     scanned_text = scan_entry.get().strip()
@@ -99,6 +100,7 @@ def handle_scan(event):
             status_label.config(text="Ukendt QR code! Scan et navn nu.", font=status_font)
 
 def refresh_table():
+    """Refresh the table with the current user actions, sorted by total actions per user."""
     # Clear existing rows
     for row in tree.get_children():
         tree.delete(row)
@@ -118,6 +120,7 @@ def refresh_table():
         tree.insert("", "end", values=[user] + counts + [total])
 
 def export_csv():
+    """Export the user actions to a CSV file, only exporting new entries since the last export if possible."""
     global previous_user_actions
     global output_dir
     os.makedirs(output_dir, exist_ok=True)
