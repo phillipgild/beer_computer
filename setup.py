@@ -31,6 +31,7 @@ def generate_mac_command_files():
     #!/bin/bash
     cd "{repo_dir}"
     python3 find_prices_divide_losses_equally.py
+    read -p "Press Enter to close..."
     """
 
     command_path = os.path.join(repo_dir, command_filename)
@@ -46,6 +47,7 @@ def generate_mac_command_files():
     #!/bin/bash
     cd "{repo_dir}"
     python3 generate_qr_codes.py
+    read -p "Press Enter to close..."
     """
 
     command_path = os.path.join(repo_dir, command_filename)
@@ -61,6 +63,7 @@ def generate_mac_command_files():
     #!/bin/bash
     cd "{repo_dir}"
     python3 generate_barcodes.py
+    read -p "Press Enter to close..."
     """
 
     command_path = os.path.join(repo_dir, command_filename)
