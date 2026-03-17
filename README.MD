@@ -24,5 +24,9 @@ python -m pip install -r requirements.txt
 ## Create scripts to run the programs
 
 1. **Go to the folder 'run_setup'**
-2. **On mac, double-click run_setu_mac.command  \
-On windows, double-click run_setup_windows.bat**
+2. **On Mac-OS,  double-click run_setu_mac.command  \
+     On Windows, double-click run_setup_windows.bat  \
+     On Linux,   double-click run_setup_linux.sh**
+3. **On Mac-OS,  go to 'mac_scripts'     and run the desired programs  \
+     On Windows, go to 'windows_scripts' and run the desired programs  \
+     On Linux,   go to 'linux_scripts'   and run the desired programs**
