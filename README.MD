@@ -16,5 +16,6 @@ A simple Python/Tkinter application to scan users and items.
 Open Terminal and run:
 
 ```bash
-git clone https://github.com/yourusername/my-github-repo.git
-cd my-github-repo
+git clone https://github.com/phillipgild/beer_computer.git
+cd beer_computer
+python setup.py
