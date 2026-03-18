@@ -211,7 +211,8 @@ def generate_linux_sh_files():
 def main():
     """Main function."""    
     system = platform.system()
-    if system == "MacOS":
+
+    if system == "Darwin":
         generate_mac_command_files()
     elif system == "Windows":
         generate_windows_bat_files()
