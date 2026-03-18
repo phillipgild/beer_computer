@@ -11,9 +11,12 @@ A simple Python application to scan users and items.
 ## Installation & Setup
 
 To clone the repository, open the terminal and run:
-
 ```bash
 git clone https://github.com/phillipgild/beer_computer.git
+```
+
+Now change folder to enter the repository by:
+```bash
 cd beer_computer
 ```
 
