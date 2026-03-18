@@ -19,7 +19,7 @@ names_seen = set()
 
 # --- Read Users CSV ---
 users = {}
-with open("users.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/users.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -33,7 +33,7 @@ with open("users.csv", newline="", encoding="utf-8-sig") as f:
 
 # --- Read Items CSV ---
 items = {}
-with open("items.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -47,7 +47,7 @@ with open("items.csv", newline="", encoding="utf-8-sig") as f:
 
 # --- Read Hardcoded Actions CSV ---
 hardcoded_actions = {}
-with open("no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()

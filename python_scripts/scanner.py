@@ -9,7 +9,7 @@ output_dir = "exports"
 
 # --- Load Users from CSV ---
 qr_to_user = {}
-with open("users.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/users.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -20,7 +20,7 @@ with open("users.csv", newline="", encoding="utf-8-sig") as f:
 
 # --- Load Items from CSV ---
 qr_to_item = {}
-with open("items.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
@@ -31,7 +31,7 @@ with open("items.csv", newline="", encoding="utf-8-sig") as f:
 
 # --- Load Hardcoded Actions from CSV ---
 hardcoded_actions = {}
-with open("no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()

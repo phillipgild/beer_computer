@@ -9,7 +9,7 @@ output_dir = "prices"
 qr_to_item = {}
 item_prices = {}
 item_amounts = {}
-with open("items.csv", newline="", encoding="utf-8-sig") as f:
+with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
         key = row["key"].strip()
