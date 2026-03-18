@@ -1,4 +1,4 @@
-item,key,price,amount
+items,keys,price,amount
 Øl,A001,6,100
 Sodavand,A002,4,15
 ice,A003,8,20

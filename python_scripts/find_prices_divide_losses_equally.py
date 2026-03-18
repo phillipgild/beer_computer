@@ -12,8 +12,8 @@ item_amounts = {}
 with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
-        item = row["item"].strip()
+        key = row["keys"].strip()
+        item = row["items"].strip()
         price = float(row["price"].strip())
         amount = int(row["amount"].strip())
         if key in qr_to_item or item in qr_to_item.values() or price in item_prices.values() or amount in item_amounts.values():

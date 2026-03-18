@@ -12,7 +12,7 @@ qr_to_user = {}
 with open("users_and_items/users.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
+        key = row["keys"].strip()
         name = row["user"].strip()
         if key in qr_to_user or name in qr_to_user.values():
             raise ValueError(f"Duplicate user or key: {name} / {key}")
@@ -23,8 +23,8 @@ qr_to_item = {}
 with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
-        item = row["item"].strip()
+        key = row["keys"].strip()
+        item = row["items"].strip()
         if key in qr_to_item or item in qr_to_item.values():
             raise ValueError(f"Duplicate item or key: {item} / {key}")
         qr_to_item[key] = item
@@ -34,7 +34,7 @@ hardcoded_actions = {}
 with open("users_and_items/no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
+        key = row["keys"].strip()
         action = row["action"].strip()
         if key in hardcoded_actions or action in hardcoded_actions.values():
             raise ValueError(f"Duplicate action or key: {action} / {key}")

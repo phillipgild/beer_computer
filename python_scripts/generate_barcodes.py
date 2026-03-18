@@ -18,7 +18,7 @@ users = {}
 with open("users_and_items/users.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
+        key = row["keys"].strip()
         name = row["user"].strip()
         if key in barcode_keys_seen or name in names_seen:
             print(f"Duplicate user or key found: {name} / {key}")
@@ -32,8 +32,8 @@ items = {}
 with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
-        item = row["item"].strip()
+        key = row["keys"].strip()
+        item = row["items"].strip()
         if key in barcode_keys_seen or item in names_seen:
             print(f"Duplicate item or key found: {item} / {key}")
             sys.exit(1)
@@ -46,7 +46,7 @@ hardcoded_actions = {}
 with open("users_and_items/no_touch/hardcoded_actions.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        key = row["key"].strip()
+        key = row["keys"].strip()
         action = row["action"].strip()
         if key in barcode_keys_seen or action in names_seen:
             print(f"Duplicate action or key found: {action} / {key}")
