@@ -1,9 +1,10 @@
 import os
 import sys
 import csv
-import treepoem
+from barcode import Code128
+from barcode.writer import ImageWriter
+from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
-
 
 # Folder to save barcode images
 output_dir = "barcodes"
@@ -58,11 +59,11 @@ with open("users_and_items/no_touch/hardcoded_actions.csv", newline="", encoding
 # --- Function to generate a barcode ---
 def generate_barcode(code, name, filename):
 
-    barcode_img = treepoem.generate_barcode(
-        barcode_type="code128",
-        data=code
-    ).convert("RGB")
-
+    code = Code128(str(code),writer=ImageWriter())
+    rv = BytesIO()
+    code.write(rv,text='')
+    barcode_img = Image.open(rv)
+    
     barcode_width, barcode_height = barcode_img.size
 
     font = ImageFont.truetype(
