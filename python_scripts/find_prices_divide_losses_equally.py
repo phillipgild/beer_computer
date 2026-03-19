@@ -60,7 +60,10 @@ def calculate_missing_items(all_user_actions, item_amounts):
     missing_items = {}
     for item, amount in item_amounts.items():
         total_count = sum(actions.get(item, 0) for actions in all_user_actions.values())
-        missing_items[item] = amount - total_count
+        missing_amount = amount - total_count
+        if missing_amount < 0:
+            raise ValueError(f"More items sold than available for {item}: {total_count} sold, but only {amount} available.")
+        missing_items[item] = missing_amount
     return missing_items
 
 missing_items = calculate_missing_items(all_user_actions, item_amounts)

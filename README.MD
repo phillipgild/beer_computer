@@ -20,15 +20,10 @@ Now change folder to enter the repository by:
 cd beer_computer
 ```
 
-## Mac OS and Linux Setup
-
-To install the required packages for Mac OS/Linux, run the following command in the repository folder
-
+To install the required packages, run the following command in the repository folder
 ```bash
 python -m pip install -r requirements.txt
 ```
-
-## Windows Setup
 
 ## Create scripts to run the programs
 
