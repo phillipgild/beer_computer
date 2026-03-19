@@ -220,10 +220,9 @@ for user, items in user_actions.items():
 first_col = "User"
 max_width = table_header_font.measure(first_col)
 
-# Check all rows for the widest entry in the first column
-for row_id in tree.get_children():
-    cell_text = str(tree.set(row_id, first_col))
-    cell_width = table_font.measure(cell_text)
+# Check all users for the widest entry in the first column
+for user in qr_to_user.items():
+    cell_width = table_font.measure(user[1])
     max_width = max(max_width, cell_width)
 
 # Set the width of the first column to accommodate the widest entry
