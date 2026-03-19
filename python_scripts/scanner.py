@@ -196,18 +196,41 @@ scan_entry.bind("<Return>", handle_scan)
 status_label = tk.Label(root, text="Scan en bruger først, og derefter en genstand.", font=status_font)
 status_label.pack(pady=5)
 
-# Table
+# --- Table ---
 columns = ["User"] + list(qr_to_item.values()) + ["Total"]
 tree = ttk.Treeview(root, columns=columns, show="headings")
+
+# Style fonts
+style = ttk.Style()
+style.configure("Treeview", font=table_font)
+style.configure("Treeview.Heading", font=table_header_font)
+
+# Set header text and initial column widths
 for col in columns:
     tree.heading(col, text=col, anchor="center")
     col_width = table_header_font.measure(col)
     tree.column(col, anchor="center", width=col_width)
 
+# Insert rows
+for user, items in user_actions.items():
+    row = [user] + [items.get(item, 0) for item in qr_to_item.values()] + [sum(items.values())]
+    tree.insert("", "end", values=row)
+
+# --- Resize the 'User' column ---
+first_col = "User"
+max_width = table_header_font.measure(first_col)
+
+# Check all rows for the widest entry in the first column
+for row_id in tree.get_children():
+    cell_text = str(tree.set(row_id, first_col))
+    cell_width = table_font.measure(cell_text)
+    max_width = max(max_width, cell_width)
+
+# Set the width of the first column to accommodate the widest entry
+tree.column(first_col, width=max_width)
+
+# Pack the treeview
 tree.pack(fill="both", expand=True)
-style = ttk.Style()
-style.configure("Treeview", font=table_font)
-style.configure("Treeview.Heading", font=table_header_font)
 
 # Export button (optional manual export)
 export_button = tk.Button(root, text="Export CSV", command=export_csv)
