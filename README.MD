@@ -68,7 +68,7 @@ They can be directly scanned by a scanner.
 If post-processing is desired, one should modify one file:  \
 In users_and_items/items.csv;  \
 one should modify the price to be the amount the item costs (not considering losses, i.e. missing items)  \
-Also the amount should be modified to the total amount of items gone (So bought_items - returned_items)  \
+Also the amount should be modified to the total amount of items gone (So bought_items - returned_items)
 
 
 # Functionalities
@@ -84,7 +84,7 @@ This is used in the scanner and elsewhere. This should not be modified on use.  
 If additional actions are required, they should be added to the repository.
 
 Whenever .csv files are exported, they will be written to the 'exports' folder with a unique name to avoid overrides.  \
-.csv files are only exported if the state of users_actions has changed since last export to avoid duplicate actions.  \
+.csv files are only exported if the state of users_actions has changed since last export to avoid duplicate actions.
 
 If the scanner program is shut down, it will export a .csv file before it exits to avoid data loss.
 
