@@ -198,7 +198,6 @@ def generate_linux_sh_files():
     sh_content = f"""
     cd "{repo_dir}"
     python python_scripts/generate_barcodes.py
-    pause
     """
 
     sh_path = os.path.join(repo_dir, sh_filename)
