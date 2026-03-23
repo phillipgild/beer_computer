@@ -145,11 +145,11 @@ def generate_windows_bat_files():
 
 def generate_linux_sh_files():
     """Generate .sh files for Linux users to easily run the scripts in the repository."""
-    linux_dir = '../linux_scripts'
-
-    # Generate the run_scanner.bat file
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    linux_dir = os.path.join(base_dir, '..', 'linux_scripts')
     os.makedirs(linux_dir, exist_ok=True)
 
+    # Generate the run_scanner.bat file
     sh_filename = os.path.join(linux_dir, "run_scanner.sh")
     repo_dir = os.path.abspath(os.path.dirname(__file__))
 
