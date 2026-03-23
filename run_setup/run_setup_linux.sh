@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd ..
-python setup.py
+python python_scripts/setup.py

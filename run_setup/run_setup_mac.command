@@ -4,4 +4,4 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 cd "${SCRIPT_DIR}/.."
 
-python setup.py
+python python_scripts/setup.py
