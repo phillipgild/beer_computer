@@ -6,7 +6,9 @@ import platform
 
 def generate_mac_command_files():
     """Generate .command files for Mac users to easily run the scripts in the repository."""
-    mac_os_dir = '../mac_scripts'
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    mac_os_dir = os.path.join(base_dir, '..', 'mac_scripts')
+    os.makedirs(mac_os_dir, exist_ok=True)
 
     # Generate the run_scanner.command file
     os.makedirs(mac_os_dir, exist_ok=True)
@@ -76,7 +78,9 @@ def generate_mac_command_files():
 
 def generate_windows_bat_files():
     """Generate .bat files for Windows users to easily run the scripts in the repository."""
-    windows_dir = '../windows_scripts'
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    windows_dir = os.path.join(base_dir, '..', 'windows_scripts')
+    os.makedirs(windows_dir, exist_ok=True)
 
     # Generate the run_scanner.bat file
     os.makedirs(windows_dir, exist_ok=True)
