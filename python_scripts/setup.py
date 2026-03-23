@@ -182,6 +182,8 @@ def generate_linux_sh_files():
     sh_content = f"""
     cd "{parent_dir}"
     python python_scripts/find_prices_divide_losses_equally.py
+    echo "Press Enter to close..."
+    read _
     """
 
     sh_path = os.path.join(repo_dir, sh_filename)
@@ -196,6 +198,8 @@ def generate_linux_sh_files():
     sh_content = f"""
     cd "{parent_dir}"
     python python_scripts/generate_qr_codes.py
+    echo "Press Enter to close..."
+    read _
     """
 
     sh_path = os.path.join(repo_dir, sh_filename)
@@ -210,6 +214,8 @@ def generate_linux_sh_files():
     sh_content = f"""
     cd "{parent_dir}"
     python python_scripts/generate_barcodes.py
+    echo "Press Enter to close..."
+    read _
     """
 
     sh_path = os.path.join(repo_dir, sh_filename)
