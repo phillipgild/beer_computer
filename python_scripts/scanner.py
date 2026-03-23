@@ -61,12 +61,14 @@ user_actions = copy.deepcopy(previous_user_actions) if previous_user_actions els
 
 # Track current user waiting for action
 current_user = None
+action_couter = 0
 
 # --- Functions ---
 def handle_scan(event):
     """Handle a scan from the USB scanner. Determine if it's a user, an item, or a hardcoded action, and update the state accordingly."""
     global current_user
     global status_font
+    global action_couter
     scanned_text = scan_entry.get().strip()
     scan_entry.delete(0, tk.END)
 
@@ -91,6 +93,7 @@ def handle_scan(event):
             refresh_table()
             status_label.config(text=f"Brugeren: {current_user} har scannet en genstanden: {item}", font=status_font)
             current_user = None
+            action_couter += 1
         else:
             status_label.config(text="Scan en bruger før du scanner en genstand!", font=status_font)
     else:
@@ -98,6 +101,10 @@ def handle_scan(event):
             status_label.config(text=f"Ukendt QR code! Brugeren {current_user} har scannet en ukendt kode. Scan en genstand nu.", font=status_font)
         else:
             status_label.config(text="Ukendt QR code! Scan et navn nu.", font=status_font)
+
+    if action_couter >= 10:  # Auto export after every 10 actions
+        export_csv()
+        action_couter = 0
 
 def refresh_table():
     """Refresh the table with the current user actions, sorted by total actions per user."""
