@@ -16,8 +16,8 @@ with open("users_and_items/items.csv", newline="", encoding="utf-8-sig") as f:
         item = row["items"].strip()
         price = float(row["price"].strip())
         amount = int(row["amount"].strip())
-        if key in qr_to_item or item in qr_to_item.values() or price in item_prices.values() or amount in item_amounts.values():
-            raise ValueError(f"Duplicate key or price or amount or item: {key} / {price} / {amount} / {item}")
+        if key in qr_to_item:
+            raise ValueError(f"Duplicate key: {key}")
         qr_to_item[key] = item
         item_prices[item] = price
         item_amounts[item] = amount
@@ -41,6 +41,18 @@ def load_all_user_actions():
         return {}
 
 all_user_actions = load_all_user_actions()
+
+# Calculate the total count of each item sold according to all_user_actions
+def calculate_total_items_sold(all_user_actions):
+    total_dict = {}
+    for _, actions in all_user_actions.items():
+        for item, count in actions.items():
+            if item not in total_dict:
+                total_dict[item] = 0
+            total_dict[item] += count
+    return total_dict
+
+total_actions = calculate_total_items_sold(all_user_actions)
 
 # For each user, calculate the total cost based on their actions and the item prices
 def calculate_user_costs(user_actions, item_prices, item_amounts):
@@ -68,14 +80,19 @@ def calculate_missing_items(all_user_actions, item_amounts):
 
 missing_items = calculate_missing_items(all_user_actions, item_amounts)
 
-# Find the total cost of the missing items and divide this amount evenly across the users
-def calculate_cost_per_user(missing_items, user_costs):
-    total_missing_cost = sum(item_prices[item] * count for item, count in missing_items.items())
-    num_users = len(user_costs)
-    if num_users == 0:
-        return {}
-    cost_per_user = total_missing_cost / num_users
-    return {user: cost_per_user for user in user_costs}
+# Divide losses equally among users based on their percantage of actions. Per item.
+def calculate_cost_per_user(missing_items, all_user_actions, total_actions):
+    total_missing_cost = [item_prices[item] * count for item, count in missing_items.items()]
+    cost_for_user = 0
+    cost_per_user = {}
+    for user, actions in all_user_actions.items():
+        for idx, (action, count) in enumerate(actions.items()):
+            percentage = count / total_actions.get(action, 1) if total_actions.get(action, 0) > 0 else 0
+            cost_for_user += percentage * total_missing_cost[idx]
+        cost_per_user[user] = cost_for_user
+    return cost_per_user
+
+cost_per_user = calculate_cost_per_user(missing_items, all_user_actions, total_actions)
 
 # Add the cost per user for the missing items to the existing user costs to get the final cost per user
 def calculate_final_user_costs(user_costs, cost_per_user):
@@ -84,7 +101,6 @@ def calculate_final_user_costs(user_costs, cost_per_user):
         final_user_costs[user] = user_costs[user] + cost_per_user.get(user, 0)
     return final_user_costs
 
-cost_per_user = calculate_cost_per_user(missing_items, user_costs)
 final_user_costs = calculate_final_user_costs(user_costs, cost_per_user)
 
 # Export the user costs to a new CSV file
